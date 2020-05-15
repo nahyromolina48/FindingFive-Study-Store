@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Upload</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="jquery-ui.css">
+  <link rel="stylesheet" href="upload.css">
+  <link rel="stylesheet" href="tabs.css">
+  <link rel="stylesheet" href="style-b.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+  <main>
+    <!-- Header start -->
+    <header id="header" class="box-shadow-down">
+      <ul class="menu">
+        <li>
+          <section id="logo" class="push">
+            <a href="https://www.findingfive.com/"><img src="https://www.findingfive.com/images/logo-small-white.png"></a>
+          </section>
+          <li>
+            <div class="ss_text" onclick="window.location.href = 'home.html';">Study Store</div>
+          </li>
+
+          <!--<a class="active" href="#home">Home</a></li>-->
+        <li class="push">
+          <form id="searchForm">
+            <div class="search_bar">
+              <input type="text" name="keywords" onkeydown="if (event.keyCode == 13) document.getElementById('searchButton').click()" id="searchInput" placeholder="Search for studies...">
+              <button onClick="searchFn()" type="button" method="get" id="searchButton"><i class="fa fa-search"></i></button>
+              <script src="search.js"></script>
+            </div>
+          </form>
+        </li>
+        <li>
+          <div class="upload-btn-wrapper">
+            <button class="btn" onclick="window.location.href = 'upload.html';">Upload</button>
+            <!--<button onclick="window.location.href = 'https://w3docs.com';">Click Here</button>-->
+            <!--<input type="file" name="myfile" />-->
+          </div>
+        </li>
+        <li>
+          <div class="vl line_1"></div>
+        </li>
+        <li>
+          <div class=" ">∞ Credits</div>
+        </li>
+        <li>
+          <div class="vl line_2"></div>
+        </li>
+        <li>
+          <button onclick="window.location.href = 'profile.html';" class="dropbtn"><i class="fa fa-user-circle"></i>Profile</button>
+        </li>
+      </ul>
+    </header>
+    <!-- Header end -->
+
+
+    <div id="overlay">
+      <div class="popup">
+        <div id="text-main">Completed!</div>
+        <div id="text-main2">Close</div><div id="close-icon"><i onclick="off()" class="fa fa-check-circle fa-2x check fa-times-circle-o orange_close"></i></div>
+        <div id="text-desc">Congratulations, study is submitted successfully for review.</div>
+        <div id="text-desc2"><button type="button" class="orange_btn" onclick="off()">Okay</button></div>
+      </div>
+    </div>
+
+    <div id="overlay_error">
+      <div class="popup">
+        <div id="text-main">Field(s) missing.</div>
+        <div id="text-main2">Close</div><div id="close-icon"><i onclick="off_error()" class="fa fa-check-circle fa-2x check fa-times-circle-o orange_close"></i></div>
+        <div id="text-desc">Please fill out all of the input fields to proceed with your upload.</div>
+        <div id="text-desc2"><i onclick="off_error()" class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+    <div id="overlay_error_img">
+      <div class="popup">
+        <div id="text-main">Image missing.</div>
+        <div id="text-main2">Close</div><div id="close-icon"><i onclick="off_error_img()" class="fa fa-check-circle fa-2x check fa-times-circle-o orange_close"></i></div>
+        <div id="text-desc">Please upload an image to proceed with your upload.</div>
+        <div id="text-desc2"><i onclick="off_error_img()" class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+      </div>
+    </div>
+    <!----- Overlay -------->
+
+
+    <!---- Form Start ---------->
+    <div class="form_wrapper">
+      <form id="msform">
+        <div class="instruction">
+          <p>Upload your study here</p>
+        </div>
+
+        <div>
+          <ul id="progressbar">
+            <li class="step"></li>
+            <li class="step"></li>
+            <li class="step"></li>
+            <li class="step"></li>
+            <li class="step"></li>
+          </ul>
+        </div>
+
+        <div class="tab">
+          <!------------------ Step_1 ------------------------------>
+          <h2 class="fs-title">Study Information</h2>
+          <label for="title">Title</label><br>
+
+          <!-- <input type="text" oninput="this.className = ''" name="title" placeholder="Add the title" required /> -->
+          <input type="text" oninput="this.className = ''" name="title" id="title" placeholder="Add the title" required />
+          <label for="reference">Reference
+            <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+              <span class="tooltiptext">Please state all relevant references that may have contributed to this study.</span>
+            </div>
+          </label><br>
+
+          <input type="text" oninput="this.className = ''" name="references" id="references" placeholder="Reference of the study" required />
+          <label for="tags">Purpose of the study
+            <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+              <span class="tooltiptext">Briefly describe what the objective of the study is.</span>
+            </div>
+          </label><br>
+
+          <input type="text" oninput="this.className = ''" name="purpose" id="purpose" placeholder="Purpose" required />
+          <label for="tags">Categories</label><br>
+
+          <!--
+        <ul class="category_items">
+          <li>
+            <p>
+              <label for="standard-dropdown">Categories</label><br />
+              <select id="standard-dropdown" name="standard-dropdown" class="custom-class1 custom-class2">
+                <option value="6">Categorization</option>
+                <option value="7">Knowledge Representation</option>
+                <option value="8">Language</option>
+                <option value="9">Memory</option>
+                <option value="10">Perception</option>
+                <option value="11">Cognition</option>
+              </select>
+            </p>
+          </li>
+          <li>
+            <p>
+              <label for="standard-dropdown">Sub-categories</label><br />
+              <select id="standard-dropdown" name="standard-dropdown" class="custom-class1 custom-class2">
+
+                <option value="6">Language Aquisition</option>
+                <option value="7">Language Processing</option>
+                <option value="8">Linquistic Grammar</option>
+                <option value="9">Phonetics Phonology</option>
+                <option value="10">Perception</option>
+                <option value="11">Cognition</option>
+
+              </select>
+            </p>
+          </li>
+        </ul>
+
+-->
+
+          <div class="category_wrapper">
+            <div class="category_div category_wrapper_item" id="category_div">
+              <select name="categories" class="required-entry selection_shadow" id="categories" onchange="javascript: dynamicdropdown(this.options[this.selectedIndex].value);">
+                <option selected hidden>Category</option>
+                <option value="Categorization">Categorization</option>
+                <option value="Knowledge representation">Knowledge representation</option>
+                <option value="Language">Language</option>
+                <option value="Memory">Memory</option>
+                <option value="Perception">Perception</option>
+                <option value="Cognition">Cognition</option>
+              </select>
+            </div>
+            <div class="sub_category_div category_wrapper_item" id="subcategories_div">
+              <script type="text/javascript" language="JavaScript">
+                document.write(
+                  '<select name="subcategories" id="subcategory" class="selection_shadow"><option value="">Subcategory</option></select>'
+                )
+              </script>
+              <noscript>
+                <select name="subcategories" id="subcategories" class="selection_shadow">
+                  <option selected hidden>Subcategory</option>
+                </select>
+              </noscript>
+            </div>
+          </div>
+          <!--Categoty_wrapper-->
+
+          <label for="tags">Keywords
+            <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+              <span class="tooltiptext">Enter keywords to make your study easier for a user to find in their search results. Be specific!</span>
+            </div></label><br>
+
+          <input type="text" oninput="this.className = ''" name="keywords" id="keywords" placeholder="Seperate keywords by comma" required />
+
+        </div>
+
+        <div class="tab">
+          <!------------------ Step_2 ------------------------------>
+          <h2 class="fs-title">Study Methods</h2>
+          <label for="abstract">Abstract
+            <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+              <span class="tooltiptext">A brief summary of the study to help the reader quickly ascertain the paper's purpose, usually 150-200 words in length.</span>
+            </div>
+          </label><br>
+
+          <!--<textarea name="message" rows="10" cols="30" oninput="this.className = ''" placeholder="Abstract of the study"
+          required></textarea> -->
+          <textarea name="abstract" rows="10" cols="30" oninput="this.className = ''" placeholder="Abstract of the study" id="abstractText" required></textarea>
+
+          <div class="methods">
+            <div class="method_item">
+              <label for="stimuli">No. of Stimuli
+                <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+                  <span class="tooltiptext">Please specify the number of stimuli in your study. This can be found in your study template under “Stimuli”.</span>
+                </div>
+              </label><br>
+              <!--<input type="number" oninput="this.className = ''" name="stimuli" min="1" max="5" placeholder="No. of Stimuli"
+              required />-->
+              <input type="number" oninput="this.className = ''" name="num_stimuli" id="num_stimuli" placeholder="No. of Stimuli" required />
+            </div>
+            <div class="method_item">
+              <label for="tags">Duration of Study
+                <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+                  <span class="tooltiptext">This is the estimated length it takes a participant to complete the study (ie. 20 minutes).</span>
+                </div>
+              </label><br>
+              <input type="number" oninput="this.className = ''" name="duration" id="duration" placeholder="Duration of Study" />
+            </div>
+            <div class="method_item">
+              <label for="tags">No. of Responses
+                <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+                  <span class="tooltiptext">Please specify the number of responses in the study. This can be found in your study template under “Response”.</span>
+                </div>
+              </label><br>
+              <input type="number" oninput="this.className = ''" name="num_responses" id="num_responses" placeholder="No. of Responses" />
+            </div>
+            <div class="method_item">
+              <label for="tags">No. of Trials
+                <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+                  <span class="tooltiptext">Please specify the number of trials that are in your study. This can be found in your study template under “Trial Template”.</span>
+                </div>
+              </label><br>
+              <input type="number" oninput="this.className = ''" name="num_trials" id="num_trials" placeholder="No. of Trials" />
+            </div>
+          </div>
+
+
+          <label for="randomized">Randomized?
+            <div class="tooltip"><i class="fa fa-question-circle question" aria-hidden="true"></i>
+              <span class="tooltiptext">Please specify if you randomized your study. If a part of your study's stimulus pattern is random, this is true.</span>
+            </div>
+          </label><br>
+          <div class="radio">
+            <input type="radio" id="randomize" name="randomize" value="true">
+            <label for="Yes">Yes</label>
+            <input type="radio" id="randomize" name="randomize" value="false">
+            <label for="No">No</label>
+          </div>
+
+        </div>
+
+
+        <!---------- tab -------->
+        <div class="tab">
+          <!------------------ Step_3 ------------------------------>
+          <h2 class="fs-title">Image Upload</h2>
+          <h3 class="fs-subtitle">Browse through your files and select an image to upload.</h3>
+          <div id="drop">
+            <label for="images"><i class="fa fa-upload fa-4x" aria-hidden="true"></i></label>
+            <input type="file" name="images" id="images" accept=".jpeg,.png,.jpg" onchange="encodeImageFileAsURL();" />
+          </div>
+          <p class="instructions">(File type must be either .jpg, .jpeg, or .png)</p>
+          <h2 class="fs-uploadNotification" id="imgUploadNotification">Image Upload Successful.</h2>
+        </div>
+
+
+
+
+        <div class="tab">
+          <!------------------ Step_4 ------------------------------>
+          <h2 class="fs-title">Json Document</h2>
+          <h3 class="fs-subtitle">Copy your JSON text into the box below.</h3>
+          <textarea name="json_document" rows="10" cols="30" oninput="this.className = ''" placeholder="Copy/Paste your JSON data here." id="user_json_document" required></textarea>
+        </div>
+
+
+        <div class="tab">
+          <!------------------ Step_5 ------------------------------>
+          <h2 class="fs-title">Preview</h2>
+
+          <div class="preview_container_left">
+            <div id="img_tabs">
+      				<div id="tabs-1">
+      					<img id="imagePreview" alt="icon" class="pre_1">
+      				</div>
+      			</div>
+            <!-- Tabs -->
+
+            <div class="preview_info">
+              <div class="pre_row_1">
+                <h2 class="study_title" id="outputTitle">title</h2>
+              </div><!-- pre_row_1 -->
+              <div class="pre_row_2">
+                <p id="outputPurpose">purpose</p>
+
+                <!---
+                <div class="review">
+      						<p>Ratings: </p>
+      						<i class="fa fa-star" aria-hidden="true"></i>
+      						<i class="fa fa-star" aria-hidden="true"></i>
+      						<i class="fa fa-star" aria-hidden="true"></i>
+      						<i class="fa fa-star" aria-hidden="true"></i>
+      						<i class="fa fa-star" aria-hidden="true"></i>
+      					</div> --->
+
+                <div class="credit_buy">
+                  <p>Credits: 20</p>
+                </div>
+                <p>Author: Prof. Alexander Gosline, Phd, M.D. Prof. of XYZ. </p>
+                <p>Institution: State University of New York at Oswego</p>
+                <div class="category_keywords">
+                  <p>Category: </p>
+                  <button class="pill" id="outputCategory">__</button>
+                </div>
+
+                <div class="category_keywords">
+                  <p>Keywords: </p>
+                <div id="keywordlist"> </div>
+      					</div>
+              </div><!-- pre_row_2 -->
+
+
+              <div id="abstract">
+
+                <ul>
+                  <li><a href="#tabs-1">
+                      Abstract
+                    </a></li>
+                  <li><a href="#tabs-2">
+                      Details
+                    </a></li>
+                </ul>
+
+                <div id="tabs-1">
+                  <p id="outputAbstract">___</p>
+                </div>
+                <div id="tabs-2">
+                  <p>
+                    No. of Stimuli: <span id="outputNumStim">__</span>
+                  </p>
+                  <p>
+                    No. of Responses: <span id="outputNumResp">__</span>
+                  </p>
+                  <p>
+                    No. of Trials: <span id="outputTrial">__</span>
+                  </p>
+                  <p>
+                    Duration of the study: <span id="outputDuration">__</span> min
+                  </p>
+                  <p>
+                    Randomized: <span id="outputRand">__</span>
+                  </p>
+                  <!-- Ignore this, it stores IMG data -->
+                  <p>
+                    <span id="outputImg"></span>
+                  </p>
+                  <!------------------------------------->
+                </div>
+
+
+
+              </div><!-- abstract -->
+
+            </div><!-- preview_info -->
+
+
+
+
+
+
+
+          </div><!-- preview_container -->
+
+          <script src="external/jquery/jquery.js"></script>
+          <script src="jquery-ui.js"></script>
+          <script>
+            $("#img_tabs").tabs();
+
+            // Hover states on the static widgets
+            $("#dialog-link, #icons li").hover(
+              function() {
+                $(this).addClass("ui-state-hover");
+              },
+              function() {
+                $(this).removeClass("ui-state-hover");
+              }
+            );
+          </script>
+          <script>
+            $("#abstract").tabs();
+
+            // Hover states on the static widgets
+            $("#dialog-link, #icons li").hover(
+              function() {
+                $(this).addClass("ui-state-hover");
+              },
+              function() {
+                $(this).removeClass("ui-state-hover");
+              }
+            );
+          </script>
+
+        </div>
+
+        <div>
+          <div class="bottom_buttons">
+            <button type="button" id="prevBtn" class="orange_btn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" id="nextBtn" class="orange_btn" onclick="nextPrev(1)" method="nil">Next</button>
+          </div>
+        </div>
+
+      </form>
+
+    </div>
+    <script src="upload.js"></script>
+    <script src="progressbar.js"></script>
+    <script src="category.js"></script>
+    <script src="profile.js"></script>
+  </main>
+</body>
+
+</html>

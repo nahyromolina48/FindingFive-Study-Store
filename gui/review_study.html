@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Review</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="upload.css">
+  <link rel="stylesheet" href="style-b.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="pop_up.js"></script>
+</head>
+
+<body>
+  <main>
+    <!-- Header start -->
+    <header id="header" class="box-shadow-down">
+      <ul class="menu">
+        <li>
+          <section id="logo" class="push">
+            <a href="https://www.findingfive.com/"><img src="https://www.findingfive.com/images/logo-small-white.png"></a>
+          </section>
+          <li>
+            <div class="ss_text" onclick="window.location.href = 'home.html';">Study Store</div>
+          </li>
+          <!--<a class="active" href="#home">Home</a></li>-->
+        <li class="push">
+          <div class="search_bar">
+            <input type="text" placeholder="Search">
+            <button type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </li>
+        <li>
+          <div class="upload-btn-wrapper">
+            <button class="btn" onclick="window.location.href = 'upload.html';">Upload</button>
+            <!--<button onclick="window.location.href = 'https://w3docs.com';">Click Here</button>-->
+            <!--<input type="file" name="myfile" />-->
+          </div>
+        </li>
+        <li>
+          <div class="vl line_1"></div>
+        </li>
+        <li>
+          <div class=" ">∞ Credits</div>
+        </li>
+        <li>
+          <div class="vl line_2"></div>
+        </li>
+        <li>
+          <button onclick="window.location.href = 'profile.html';" class="dropbtn"><i class="fa fa-user-circle"></i>Profile</button>
+        </li>
+      </ul>
+    </header><!-- Header end -->
+
+
+    <div id="overlay">
+      <div class="popup">
+        <div id="text-main">Completed!</div>
+        <div id="text-main2">Close</div><div id="close-icon"><i onclick="submitReview()" class="fa fa-check-circle fa-2x check fa-times-circle-o orange_close"></i></div>
+        <div id="text-desc">The study has been reviewed.</div>
+        <div id="text-desc2"><button type="button" class="orange_btn" onclick="submitReview()">Okay</button></div>
+      </div>
+    </div>
+
+    <div id="instruction">
+      <div class="popup">
+        <div id="text-main">Instructions</div>
+        <div id="text-main2">Close</div><div id="close-icon"><i onclick="off_instruction()" class="fa fa-check-circle fa-2x check fa-times-circle-o orange_close"></i></div>
+        <div id="text-desc">Review the study by marking which sections are incorrect and describing why.</div>
+        <div id="text-desc2"><i onclick="off_instruction()" class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+    <div id="comment">
+      <form class="popup">
+        <div id="text-main">Provide a comment</div>
+        <div id="input-comment-container">
+          <textarea id="input-comment" type="text" oninput="this.className = ''" name="title" placeholder="Tell the user why this is not valid..." required></textarea>
+        </div>
+        <p id="message-comment"></p>
+        <div id="text-desc2"><i onclick="off_comment()" class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+      </form>
+    </div>
+
+    <div id="cancel">
+      <form class="popup">
+        <div id="text-main3">This section is now approved.</div>
+        <div id="text-main2">Close</div><div id="close-icon"><i onclick="off_cancel()" class="fa fa-check-circle fa-2x check fa-times-circle-o orange_close"></i></div>
+        <p id="message-comment"></p>
+        <div id="text-desc2"><i onclick="off_cancel()" class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+      </form>
+    </div>
+
+    <!----- Overlay -------->
+
+    <div class="form_wrapper">
+      <form id="msform">
+        <div class="instruction">
+          <p>Review study here</p>
+        </div>
+
+        <div>
+          <ul id="progressbar">
+            <li class="step"></li>
+            <li class="step"></li>
+            <li class="step"></li>
+            <li class="step"></li>
+            <li class="step"></li>
+          </ul>
+        </div>
+
+
+
+        <div class="tab">
+          <!------------------ Step_1 ------------------------------>
+          <!--Title-->
+          <h2 class="fs-title">Study Information</h2>
+          <label for="title">Title</label><br>
+          <div class="check_mark">
+            <input id="title_value" type="text" oninput="this.className = ''" name="title" readonly />
+            <i onclick="changeCheck(this,'title_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          </div>
+          <p id="title_feedback" class="string_feedback"></p>
+
+          <!--Reference-->
+          <label for="reference">Reference</label><br>
+          <div class="check_mark">
+            <input id="reference_value" type="text" oninput="this.className = ''" name="reference" readonly />
+            <i onclick="changeCheck(this,'reference_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          </div>
+          <p id="reference_feedback" class="string_feedback"></p>
+
+          <!--Purpose-->
+          <label for="tags">Purpose of the study</label><br>
+          <div class="check_mark">
+            <input id="purpose_value" type="text" oninput="this.className = ''" name="tags" readonly />
+            <i onclick="changeCheck(this,'purpose_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          </div>
+          <p id="purpose_feedback" class="string_feedback"></p>
+
+          <!--Categories-->
+          <label for="tags">Categories</label><br>
+          <div class="category_wrapper">
+            <div class="category_div category_wrapper_item" id="category_div">
+              <input id="categories_value" type="text" oninput="this.className = ''" name="tags" readonly />
+            </div>
+            <div class="sub_category_div category_wrapper_item" id="sub_category_div">
+              <input id="subcategories_value" type="text" oninput="this.className = ''" name="tags" readonly />
+            </div>
+            <i onclick="changeCheck(this,'categories_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          </div>
+          <p id="categories_feedback" class="string_feedback"></p>
+          <!--Categoty_wrapper-->
+
+          <!--Keywords-->
+          <label for="tags">Keywords</label><br>
+          <div class="check_mark">
+            <input id="keywords_value" type="text" oninput="this.className = ''" name="title" readonly />
+            <i onclick="changeCheck(this,'keywords_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          </div>
+          <p id="keywords_feedback" class="string_feedback"></p>
+
+        </div>
+
+        <div class="tab">
+          <!------------------ Step_2 ------------------------------>
+          <h2 class="fs-title">Study Methods</h2>
+
+          <!--Abstract-->
+          <label for="abstract">Abstract</label><br>
+          <div class="check_mark">
+            <textarea id="abstract_value" name="message" rows="10" cols="30" oninput="this.className = ''" readonly></textarea>
+            <i onclick="changeCheck(this,'abstract_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          </div>
+          <p id="abstract_feedback" class="string_feedback"></p>
+
+          <div class="methods">
+            <!--Stimuli-->
+            <div class="method_item">
+              <label for="stimuli">No. of Stimuli</label><br>
+              <input id="stimuli_value" type="number" oninput="this.className = ''" name="stimuli" readonly />
+              <i onclick="changeCheck(this,'stimuli_feedback')" class="fa fa-check-circle fa-2x check"></i>
+              <br />
+              <p id="stimuli_feedback" class="string_feedback"></p>
+            </div>
+
+            <!--Duration-->
+            <div class="method_item">
+              <label for="tags">Duration of Study</label><br>
+              <input id="duration_value" type="number" oninput="this.className = ''" name="title" readonly />
+              <i onclick="changeCheck(this,'duration_feedback')" class="fa fa-check-circle fa-2x check"></i>
+              <br />
+              <p id="duration_feedback" class="string_feedback"></p>
+            </div>
+
+            <!--Response-->
+            <div class="method_item">
+              <label for="tags">No. of Responses</label><br>
+              <input id="responses_value" type="number" oninput="this.className = ''" name="title" readonly />
+              <i onclick="changeCheck(this,'response_feedback')" class="fa fa-check-circle fa-2x check"></i>
+              <br />
+              <p id="response_feedback" class="string_feedback"></p>
+            </div>
+
+            <!--Trials-->
+            <div class="method_item">
+              <label for="tags">No. of Trials</label><br>
+              <input id="trials_value" type="number" oninput="this.className = ''" name="title" value="11" readonly />
+              <i onclick="changeCheck(this,'trials_feedback')" class="fa fa-check-circle fa-2x check"></i>
+              <br />
+              <p id="trials_feedback" class="string_feedback"></p>
+            </div>
+          </div>
+
+          <!--Randomized-->
+          <p>Randomized?</p>
+          <div class="radio">
+            <input type="radio" id="randomized_yes_value" name="option" value="yes">
+            <label for="randomized_yes_value">Yes</label>
+            <input type="radio" id="randomized_no_value" name="option" value="no">
+            <label for="randomized_no_value">No</label>
+            <i onclick="changeCheck(this,'randomized_feedback')" class="fa fa-check-circle fa-2x check" readonly></i>
+          </div>
+          <p id="randomized_feedback" class="string_feedback"></p>
+
+        </div>
+
+
+        <!---------- tab -------->
+        <div class="tab">
+          <!------------------ Step_3 ------------------------------>
+          <h2 class="fs-title">Images / Videos</h2>
+
+          <div id="images_videos">
+          </div>
+          <i onclick="changeCheck(this,'image_videos_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          <br />
+          <p id="image_videos_feedback" class="string_feedback"></p>
+        </div>
+
+
+
+
+
+        <div class="tab">
+          <!------------------ Step_4 ------------------------------>
+          <h2 class="fs-title">File Document</h2>
+          <textarea id="json_files" name="message" rows="10" cols="30" oninput="this.className = ''" readonly></textarea>
+          <i onclick="changeCheck(this,'jsons_feedback')" class="fa fa-check-circle fa-2x check"></i>
+          <br />
+          <p id="jsons_feedback" class="string_feedback"></p>
+
+
+        </div>
+
+
+
+        <div class="tab">
+          <!------------------ Step_5 ------------------------------>
+          <h2 class="fs-title">Preview Feedback</h2>
+          <div id="preview">
+            <h5 class="fs-subtitle">Title: This is not suitable</h5>
+            <h5 class="fs-subtitle">Title: This is not suitable</h5>
+          </div>
+
+
+
+
+        </div>
+
+        <div>
+          <div class="bottom_buttons">
+            <button type="button" id="prevBtn" class="orange_btn" onclick="nextPrevReview(-1)">Previous</button>
+            <button type="button" id="nextBtn" class="orange_btn" onclick="nextPrevReview(1)">Next</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <script src="progressbarReview.js"></script>
+    <script src="category.js"></script>
+    <script src="pop_up.js"></script>
+    <script src="review_study.js"></script>
+
+    <script>
+      openInstruction();
+
+      //Get study_ID
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var id_study = url.searchParams.get("study");
+      getDetailPending(id_study);
+    </script>
+  </main>
+</body>
+
+</html>

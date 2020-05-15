@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+	<title>Preview</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link rel="stylesheet" href="jquery-ui.css">
+	<link rel="stylesheet" href="tabs.css">
+	<link rel="stylesheet" href="preview.css">
+	<link rel="stylesheet" href="style-b.css">
+	<link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+	<script src="initPreview.js"></script>
+	<script src="profile.js"></script>
+</head>
+
+<body>
+	<main>
+		<!-- Header start -->
+		<header id="header" class="box-shadow-down">
+			<ul class="menu" style="height: 84px;">
+				<li>
+					<section id="logo" class="push">
+            <a href="https://www.findingfive.com/"><img src="https://www.findingfive.com/images/logo-small-white.png"></a>
+          </section>
+          <li>
+            <div class="ss_text" onclick="window.location.href = 'home.html';">Study Store</div>
+          </li>
+					<li class="push">
+	          <form id="searchForm">
+	            <div class="search_bar">
+	              <input type="text" name="keywords" onkeydown = "if (event.keyCode == 13) document.getElementById('searchButton').click()" id="searchInput" placeholder="Search for studies...">
+	              <button onClick="searchFn()" type="button" method="get" id="searchButton"><i class="fa fa-search"></i></button>
+	              <script src="search.js"></script>
+	            </div>
+	          </form>
+	        </li>
+				<li>
+					<div class="upload-btn-wrapper">
+						<button class="buhtan" onclick="window.location.href = 'upload.html';">Upload</button>
+					</div>
+				</li>
+				<li>
+					<div class="vl line_1"></div>
+				</li>
+				<li>
+					<div>∞ Credits</div>
+				</li>
+				<li>
+					<div class="vl line_2"></div>
+				</li>
+				<li>
+					<button onclick="window.location.href = 'profile.html';" class="dropbtn"><i class="fa fa-user-circle"></i>Profile</button>
+				</li>
+			</ul>
+		</header><!-- Header end -->
+
+
+		<div id="overlay_buy">
+      <div class="popup">
+        <div id="text-main">Study purchased!</div>
+        <div id="text-desc2"><i onclick="off()" class="fa fa-check-circle fa-3x" aria-hidden="true"></i></div>
+      </div>
+    </div>
+
+
+		<div class="preview_container_left">
+			<div id="img_tabs">
+				<div id="tabs-1">
+					<img id="imagePreview" alt="icon" class="pre_1">
+				</div>
+			</div>
+			<!-- Tabs -->
+
+
+			<div class="preview_info">
+				<div class="pre_row_1">
+					<h2 class="study_title" id="title"></h2>
+					<div class="wishlist">
+						<p>Add to wishlist</p>
+						<i onclick="bookmarkWishList()" id="wishlistIcon" class="fa fa-bookmark fa-2x wishlist_icon" aria-hidden="true"></i>
+					</div>
+				</div><!-- pre_row_1 -->
+				<div class="pre_row_2">
+					<p id="purpose"></p>
+					<div class="review" id="stars">
+					</div>
+					<div class="credit_buy">
+						<p id="costInCredits"></p>
+						<button class="primary_btn" onclick="buyOverlay()" id="buy_button">Buy Now</button>
+					</div>
+					<p id="author"></p>
+					<p id="studyidPlaceholder" value="1"></p>
+					<p id="institution">Institution: </p>
+					<div class="category_keywords" id="categories"></div>
+					<div class="category_keywords" id="subcategories"></div>
+					<div class="category_keywords" id="keywords"></div>
+				</div><!-- pre_row_2 -->
+
+
+				<div id="abstract">
+
+					<ul>
+						<li><a href="#tabs-1">
+								Abstract
+							</a></li>
+						<li><a href="#tabs-2">
+								Details
+							</a></li>
+					</ul>
+
+					<div id="tabs-1">
+						<p id="abst"></p>
+					</div>
+					<div id="tabs-2">
+						<p id="stimuli">
+						</p>
+						<p id="responses">
+						</p>
+						<p id="duration"></p>
+						<p id="random"></p>
+					</div>
+
+
+
+				</div><!-- abstract -->
+
+			</div><!-- preview_info -->
+
+
+
+
+
+
+
+		</div><!-- preview_container -->
+
+
+		<div class="bs-example">
+			<div id="myCarousel" class="carousel slide" data-ride="carousel">
+				<!-- Wrapper for carousel items -->
+				<div class="carousel-inner" id="reviews">
+					</div>
+					<!-- Carousel controls -->
+					<a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
+						<span class="carousel-control-prev-icon"></span>
+					</a>
+					<a class="carousel-control-next" href="#myCarousel" data-slide="next">
+						<span class="carousel-control-next-icon"></span>
+					</a>
+				</div>
+			</div>
+
+
+
+		<script src="external/jquery/jquery.js"></script>
+		<script src="jquery-ui.js"></script>
+		<script>
+			$("#img_tabs").tabs();
+
+			// Hover states on the static widgets
+			$("#dialog-link, #icons li").hover(
+				function() {
+					$(this).addClass("ui-state-hover");
+				},
+				function() {
+					$(this).removeClass("ui-state-hover");
+				}
+			);
+		</script>
+		<script>
+			$("#abstract").tabs();
+
+			// Hover states on the static widgets
+			$("#dialog-link, #icons li").hover(
+				function() {
+					$(this).addClass("ui-state-hover");
+				},
+				function() {
+					$(this).removeClass("ui-state-hover");
+				}
+			);
+		</script>
+	</main>
+</body>
+
+</html>

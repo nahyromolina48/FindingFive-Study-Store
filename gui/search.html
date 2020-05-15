@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<head>
+  <title>Search</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="search.css">
+  <link rel="stylesheet" href="style-b.css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito+Sans&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.2/moment.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
+  <script src="https://use.fontawesome.com/9595edcb50.js"></script>
+  <script src="profile.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#vertical-menu > li > a').click(function() {
+        if ($(this).attr('class') != 'enable') {
+          $('#vertical-menu li ul').slideUp();
+          $(this).next().slideToggle();
+          $('#vertical-menu li a').removeClass('enable');
+          $(this).addClass('enable');
+        }
+      });
+    });
+  </script>
+  <script src="search.js"></script>
+  <script src="searchResults.js"></script>
+  <script src="moment.js"></script>
+  <script src="moment.min.js"></script>
+</head>
+
+<body id="searchPage">
+
+  <main>
+
+    <!-- Header start -->
+    <header id="header" class="box-shadow-down">
+      <ul class="menu">
+        <li>
+          <section id="logo" class="push">
+            <a href="https://www.findingfive.com/"><img src="https://www.findingfive.com/images/logo-small-white.png"></a>
+          </section>
+          <li>
+            <div class="ss_text" onclick="window.location.href = 'home.html';">Study Store</div>
+          </li>
+          <!--<a class="active" href="#home">Home</a></li>-->
+        <li class="push">
+          <form id="searchForm">
+            <div class="search_bar">
+              <input type="text" name="keywords" onkeydown="if (event.keyCode == 13) document.getElementById('searchButton').click()" id="searchInput" placeholder="Search for studies...">
+              <button onClick="searchFn()" type="button" method="get" id="searchButton"><i class="fa fa-search"></i></button>
+              <script src="search.js"></script>
+            </div>
+          </form>
+        </li>
+        <li>
+          <div class="upload-btn-wrapper">
+            <button class="btn" onclick="window.location.href = 'upload.html';">Upload</button>
+          </div>
+        </li>
+        <li>
+          <div class="vl line_1"></div>
+        </li>
+        <li>
+          <div class=" ">∞ Credits</div>
+        </li>
+        <li>
+          <div class="vl line_2"></div>
+        </li>
+        <li>
+          <button onclick="window.location.href = 'profile.html';" class="dropbtn"><i class="fa fa-user-circle"></i>Profile</button>
+        </li>
+      </ul>
+    </header><!-- Header end -->
+
+
+    <div class="container">
+      <div class="wrapper_one">
+        <div class="box left_nav">
+          <p class="title">Categories
+            <hr>
+          </p>
+
+          <div class="box category">
+            <ul id="vertical-menu">
+              <li>
+                <a onclick="searchFn()">All Studies</a>
+              </li>
+              <li>
+                <a onclick="categorySelectSP(this.innerHTML)">Categorization</a>
+                <ul>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Induction and acquisition</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Judgement and classification</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Representation and structure</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Similarity</a></li>
+                  <div id="horizontal-line-categories"></div>
+                </ul>
+              </li>
+              <li><a onclick="categorySelectSP(this.innerHTML)">Knowledge representation</a>
+                <ul>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Dual-coding theories</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Media psychology</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Mental imagery</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Numerical cognition</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Proposition encoding</a></li>
+                  <div id="horizontal-line-categories"></div>
+                </ul>
+              </li>
+              <li><a onclick="categorySelectSP(this.innerHTML)">Language</a>
+                <ul>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Language acquisition</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Language processing</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Linguistic grammar</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Phonetics Phonology</a></li>
+                  <div id="horizontal-line-categories"></div>
+                </ul>
+              </li>
+              <li><a onclick="categorySelectSP(this.innerHTML)">Memory</a>
+                <ul>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Aging and memory</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Autobiographical memory</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Childhood memory</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Constructive memory</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Emotion and memory</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Episodic memory</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Eyewitness memory</a></li>
+                  <div id="horizontal-line-categories"></div>
+                </ul>
+              </li>
+              <li><a onclick="categorySelectSP(this.innerHTML)">Perception</a>
+                <ul>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Attention</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Object recognition</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Pattern recognition</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Perception</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Form perception</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Psychophysics</a></li>
+                  <div id="horizontal-line-categories"></div>
+                </ul>
+              </li>
+              <li><a onclick="categorySelectSP(this.innerHTML)">Cognition</a>
+                <ul>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Choice</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Concept formation</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Decision making</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Logic</a></li>
+                  <div id="horizontal-line-categories"></div>
+                  <li><a onclick="subCategorySelectSP(this.innerHTML)">Psychology of reasoning</a></li>
+                  <div id="horizontal-line-categories"></div>
+                </ul>
+              </li>
+            </ul>
+          </div>
+          <!-- Category Choices END -->
+        </div>
+
+        <div class="box study_cards">
+          <p class="title">We have found the following studies as a search result...</p>
+          <hr>
+          <ul class="filter" id="filterSelection">
+            <li>
+              <p class="filterText">Filter by:</p>
+            </li>
+            <li>
+              <select name="categories" class="required-entry selection_shadow" id="price" onchange="javascript: filterSearch(this.id, this.options[this.selectedIndex].value)">
+                <option selected hidden>Price</option>
+                <option value="0-30">0-30</option>
+                <option value="31-60">31-60</option>
+                <option value="61-90">61-90</option>
+                <option value="91-120">91-120</option>
+              </select>
+              <!--this.options[this.selectedIndex].value-->
+            </li>
+            <li>
+              <div class="duration">
+                <div class="category_div category_wrapper_item" id="category_div">
+                  <select name="duration" class="required-entry selection_shadow" id="duration" onchange="javascript: filterSearch(this.id, this.options[this.selectedIndex].value)">
+                    <option selected hidden>Duration</option>
+                    <option value="0-15">0-15 min</option>
+                    <option value="16-30">16-30 min</option>
+                    <option value="31-45">31-45 min</option>
+                    <option value="46-60">46-60 min</option>
+                  </select>
+                </div>
+            </li>
+            <li>
+              <div class="rating">
+                <div class="category_div category_wrapper_item" id="category_div">
+                  <select name="categories" class="required-entry selection_shadow" id="rating" onchange="javascript: filterSearch(this.id, this.options[this.selectedIndex].value)">
+                    <option selected hidden>Rating</option>
+                    <option value="5">5 stars</option>
+                    <option value="4">4 stars</option>
+                    <option value="3">3 stars</option>
+                    <option value="2">2 stars</option>
+                    <option value="1">1 star</option>
+                  </select>
+                </div>
+            </li>
+            <li>
+              <div class="uploaddate">
+                <div class="category_div category_wrapper_item" id="category_div">
+                  <select name="categories" class="required-entry selection_shadow" id="uploaddate" onchange="javascript: filterSearch(this.id, this.options[this.selectedIndex].value)">
+                    <option selected hidden>Upload Date</option>
+                    <option value="7">Last 7 days</option>
+                    <option value="30">Last 30 days</option>
+                    <option value="182">Last 6 months</option>
+                    <option value="365">Last year</option>
+                  </select>
+                </div>
+            </li>
+          </ul>
+          <hr>
+          <!--<div id="filterDisplay">
+            <ul class="filter" id="displayFilters"></ul>
+        </div>-->
+          <br>
+          <div id="myData"></div>
+        </div>
+
+      </div>
+  </main>
+</body>
+
+</html>

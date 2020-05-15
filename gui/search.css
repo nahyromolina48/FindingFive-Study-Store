@@ -1,0 +1,50 @@
+.menu_items {
+  padding: 5rem;
+}
+
+.filter {
+  display: flex;
+  list-style-type: none;
+  align-items: center;
+}
+
+.selection_shadow {
+  padding: 0.3rem;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 98%;
+  box-sizing: border-box;
+  color: #2C3E50;
+  font-size: 13px;
+  background-color: #F5F6F7;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-family: 'Nunito Sans', Arial, Helvetica, sans-serif;
+}
+
+#categories {
+  max-width: 9rem;
+}
+
+.filter>li {
+  color: white;
+  text-decoration: none;
+  margin: 0rem;
+  max-width: 7rem;
+}
+
+.str_ratin {
+  color: red;
+}
+
+select {
+  font-family: 'Nunito Sans', Arial, Helvetica, sans-serif;
+}
+
+.filterText {
+  color: #444;
+  font-size: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width: auto;
+  padding-right: 1rem;
+}
